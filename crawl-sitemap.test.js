@@ -44,4 +44,19 @@ describe('crawl', () => {
 			expect(urls).to.have.members([`${rootURL}/`]);
 		});
 	});
+
+	describe('404', () => {
+		it('throws error', async () => {
+			let urls = [];
+			let error;
+			try {
+				for await (const url of crawl(`${rootURL}/sitemap-missing.xml`)) urls.push(url);
+			} catch (_error) {
+				error = _error;
+			}
+
+			expect(error).to.be.instanceOf(Error);
+			expect(error.message).to.equal(`Not found: ${rootURL}/sitemap-missing.xml`);
+		});
+	});
 });

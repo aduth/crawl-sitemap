@@ -13,7 +13,15 @@ import decompressResponse from 'decompress-response';
  * @return {Promise<import('http').IncomingMessage>}
  */
 function getResponse(url) {
-	return new Promise((resolve) => get(url, resolve));
+	return new Promise((resolve, reject) =>
+		get(url, (response) => {
+			if (response.statusCode?.toString().startsWith('2')) {
+				resolve(response);
+			} else {
+				reject(new Error(`Not found: ${url}`));
+			}
+		})
+	);
 }
 
 /**
