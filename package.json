@@ -1,7 +1,7 @@
 {
 	"name": "crawl-sitemap",
 	"description": "Crawl to discover all URL locations defined in a sitemap or sitemap index",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"type": "module",
 	"main": "crawl-sitemap.js",
 	"license": "MIT",
